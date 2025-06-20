@@ -1,0 +1,10 @@
+flask
+pandas
+nltk
+langdetect
+wordcloud
+matplotlib
+seaborn
+scikit-learn
+textblob
+google-api-python-client

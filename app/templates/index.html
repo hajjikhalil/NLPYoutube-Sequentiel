@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analyse NLP YouTube</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px 40px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #1565c0;
+        }
+        .result-section {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            padding: 20px;
+            border-radius: 7px;
+            margin-top: 20px;
+        }
+        .result-section h2 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+        .result-section p {
+            font-size: 18px;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analyse des commentaires YouTube</h1>
+<form method="post" enctype="multipart/form-data">
+    <label>Fichier .txt avec les IDs des vidéos YouTube :</label>
+    <input type="file" name="video_file" accept=".txt" required>
+    <button type="submit">Analyser</button>
+</form>
+{% if results %}
+    {% for res in results %}
+        <div class="result-section">
+            <h2>Résultat de l'analyse pour la vidéo {{ res.video_id }} :</h2>
+            <pre style="white-space: pre-line;">{{ res.resume }}</pre>
+            <div>Score : {{ '%.2f'|format(res.score) }}</div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+    </div>
+</body>
+</html>
